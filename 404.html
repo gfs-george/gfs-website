@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Page Not Found — Gallagher Financial Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6VNFFKK0CK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6VNFFKK0CK');
+  </script>
+  <link rel="icon" type="image/png" href="/assets/logos/favicon-chess.png" />
+  <link rel="apple-touch-icon" href="/assets/logos/favicon-chess.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <!-- Root-relative so this page works no matter what URL Apache served it for -->
+  <link rel="stylesheet" href="/colors_and_type.css?v=5" />
+  <link rel="stylesheet" href="/refresh.css?v=15" />
+  <style>
+    :root { --nav-logo-height: 120px; }
+    html, body { height: 100%; }
+    body { margin: 0; display: flex; flex-direction: column; }
+    .nf-header {
+      flex: 0 0 auto;
+      background: #fff;
+      border-bottom: 1px solid var(--gfs-fog);
+      padding: 18px 40px;
+    }
+    .nf-logo img { height: 72px; width: auto; display: block; }
+
+    .nf-wrap {
+      flex: 1 1 auto;
+      min-height: 0;
+      position: relative;
+      background: var(--gfs-paper);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+    }
+    .nf-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 620px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      padding: 36px 20px 12px;
+    }
+    .nf-stage {
+      flex: 1 1 auto;
+      min-height: 0;
+      width: 100%;
+      position: relative;
+    }
+    .nf-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      pointer-events: none;
+    }
+    .nf-code {
+      font-family: var(--font-h1);
+      font-weight: 600;
+      font-size: clamp(72px, 16vw, 150px);
+      line-height: 0.9;
+      letter-spacing: 0.04em;
+      color: var(--gfs-black);
+      margin: 0;
+    }
+    .nf-code .accent { color: var(--gfs-green-600); }
+    .nf-title {
+      font-family: var(--font-h1);
+      font-weight: 600;
+      font-size: clamp(26px, 5vw, 40px);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--gfs-black);
+      margin: 4px 0 16px;
+    }
+    .nf-msg {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--gfs-graphite);
+      margin: 0 0 20px;
+    }
+    .nf-actions { flex: 0 0 auto; margin-bottom: 8px; }
+    .nf-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .nf-links a { color: var(--gfs-charcoal); transition: color 140ms; }
+    .nf-links a:hover { color: var(--gfs-green-700); }
+    @media (max-width: 600px) {
+      .nf-header { padding: 14px 20px; }
+      .nf-logo img { height: 60px; }
+      .nf-msg { font-size: 16px; }
+    }
+  </style>
+
+  <!-- Three.js is SELF-HOSTED (assets/vendor/three); importmap resolves the
+       bare 'three' specifier used by GLTFLoader. Root-relative paths so this
+       page works no matter what URL Apache served the 404 for. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "/assets/vendor/three/three.module.min.js",
+      "three/addons/": "/assets/vendor/three/addons/"
+    }
+  }
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+    const canvas = document.getElementById('nf-canvas');
+    const hero = canvas.parentElement;
+    let W = hero.clientWidth, H = hero.clientHeight;
+
+    const scene  = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(42, W / H, 0.1, 100);
+    camera.position.set(0, 0.5, 7);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setSize(W, H);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x000000, 0);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.08));
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2.4);  keyLight.position.set(4, 8, 6);   scene.add(keyLight);
+    const fillLight = new THREE.DirectionalLight(0xcccccc, 0.4);  fillLight.position.set(-6, 0, 4); scene.add(fillLight);
+    const rimLight = new THREE.DirectionalLight(0x888888, 0.5);   rimLight.position.set(0, -6, -4); scene.add(rimLight);
+    const greenLight = new THREE.PointLight(0x94D500, 5.5, 20);   greenLight.position.set(-4, -1, 5); scene.add(greenLight);
+
+    let knight = null, knightMaxDim = 1;
+    const loader = new GLTFLoader();
+    loader.load('/assets/logos/GFS_Mesh3D_ChessPiece.glb', (gltf) => {
+      knight = gltf.scene;
+      const box = new THREE.Box3().setFromObject(knight);
+      const center = new THREE.Vector3(); box.getCenter(center); knight.position.sub(center);
+      const size = new THREE.Vector3(); box.getSize(size); knightMaxDim = Math.max(size.x, size.y, size.z);
+      knight.traverse(c => { if (c.isMesh) {
+        c.material = new THREE.MeshStandardMaterial({ color: 0x000000, metalness: 0.92, roughness: 0.22, transparent: true, opacity: 0.72 });
+      }});
+      knight.scale.setScalar((W < 768 ? 3.0 : 4.4) / knightMaxDim);
+      scene.add(knight);
+    }, undefined, (err) => console.error('GLB load error:', err));
+
+    let t = 0;
+    (function tick(){
+      requestAnimationFrame(tick);
+      t += 0.007;
+      if (knight) {
+        knight.rotation.y = Math.sin(t * 0.42) * 0.65;
+        knight.rotation.z = Math.sin(t * 0.26) * 0.04;
+        knight.position.y = Math.sin(t * 0.55) * 0.18;
+      }
+      greenLight.position.x = Math.cos(t * 0.32) * 5 - 1;
+      greenLight.position.z = Math.sin(t * 0.32) * 4 + 3;
+      renderer.render(scene, camera);
+    })();
+
+    new ResizeObserver(() => {
+      W = hero.clientWidth; H = hero.clientHeight;
+      camera.aspect = W / H; camera.updateProjectionMatrix();
+      renderer.setSize(W, H);
+      if (knight) knight.scale.setScalar((W < 768 ? 3.0 : 4.4) / knightMaxDim);
+    }).observe(hero);
+  </script>
+</head>
+<body>
+  <header class="nf-header">
+    <a class="nf-logo" href="/">
+      <img src="/assets/logos/gfs-logo-horizontal.jpg" alt="Gallagher Financial Services" />
+    </a>
+  </header>
+  <main class="nf-wrap">
+    <div class="nf-inner">
+      <div class="nf-code">4<span class="accent">0</span>4</div>
+      <h1 class="nf-title">Page not found</h1>
+      <p class="nf-msg">The page you're looking for moved or no longer exists. Let's get you back on track.</p>
+      <div class="nf-actions">
+        <a class="btn btn-primary" href="/">Back to Home</a>
+      </div>
+      <div class="nf-stage"><canvas id="nf-canvas" class="nf-canvas"></canvas></div>
+    </div>
+  </main>
+</body>
+</html>

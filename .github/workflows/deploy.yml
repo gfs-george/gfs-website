@@ -1,0 +1,35 @@
+name: Deploy to GoDaddy
+
+# Manual only, click "Run workflow" in the Actions tab when you're
+# ready to push the current main branch live to GoDaddy.
+# (To switch to auto-deploy on every push, uncomment the `push` block.)
+on:
+  workflow_dispatch:
+  # push:
+  #   branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # Explicit FTPS (TLS) on port 21 - encrypts credentials and
+          # transfer. GoDaddy cPanel supports this on the standard port.
+          protocol: ftps
+          port: 21
+          local-dir: ./
+          # FTP_USERNAME is a cPanel FTP account scoped to public_html,
+          # so its login lands in the web root and server-dir is "./".
+          server-dir: ./
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            .github/**

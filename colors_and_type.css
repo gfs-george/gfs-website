@@ -1,0 +1,52 @@
+/* ============================================================
+   Gallagher Financial Services: Colors & Type tokens
+   ------------------------------------------------------------
+   Brand: chess-knight monogram in black and gray with a single
+   fresh green (#94D500) and a recurring green-on-gray "swoop"
+   curve. Restrained and traditional.
+
+   Fonts (Google Fonts, free):
+   - H1 page/hero titles ... Playfair Display (--font-h1)
+   - Other headings ......... DM Sans         (--font-display)
+   - Body / editorial ....... DM Sans         (--font-serif)
+   - UI / labels / nav ...... Inter           (--font-ui)
+   Do not introduce a new family without updating this file.
+   ============================================================ */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  /* ============== COLOR TOKENS ============== */
+
+  /* Brand neutrals, the chess piece's black-to-silver gradient */
+  --gfs-black:        #0E0E0E;   /* near-black, used in logo body, headlines */
+  --gfs-ink:          #1A1A1A;   /* primary text */
+  --gfs-charcoal:     #2C2C2C;   /* secondary heads, dark surfaces */
+  --gfs-graphite:     #4A4A4A;   /* body text on light */
+  --gfs-steel:        #7A7A7A;   /* muted / "financial services" italic */
+  --gfs-silver:       #B8B8B8;   /* chess piece highlight, dividers */
+  --gfs-fog:          #DCDCDC;   /* hairline borders */
+  --gfs-mist:         #EEEEEE;   /* alt surface (avatar fallback) */
+  --gfs-paper:        #F6F5F2;   /* warm off-white surface */
+  --gfs-white:        #FFFFFF;
+
+  /* Brand accent, the official Gallagher green (#94D500) */
+  --gfs-green-300:    #B7E456;   /* light accent on dark (visit band) */
+  --gfs-green-500:    #94D500;   /* PRIMARY brand green, the swoop */
+  --gfs-green-600:    #7AB300;
+  --gfs-green-700:    #5E8B00;   /* link hover, eyebrow text */
+  --gfs-green-900:    #344D00;   /* deep hover */
+
+  /* ============== TYPE TOKENS ============== */
+  --font-h1:      "Playfair Display", Georgia, serif;   /* page/hero H1 only */
+  --font-display: "DM Sans", system-ui, sans-serif;     /* other headings */
+  --font-serif:   "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-italic:  "DM Sans", system-ui, sans-serif;
+  --font-ui:      "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+  /* ============== ELEVATION + MOTION ============== */
+  --shadow-md:    0 4px 12px rgba(14,14,14,0.08), 0 1px 2px rgba(14,14,14,0.05);
+
+  --ease-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --dur-fast:    140ms;
+  --dur-base:    220ms;
+}

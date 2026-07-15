@@ -1,0 +1,65 @@
+# ============================================================
+# Gallagher Financial Services - Apache/LiteSpeed config
+# ------------------------------------------------------------
+# Version-controlled in the repo and deployed to public_html.
+# The deploy MIRRORS the repo, so a server-only .htaccess would
+# be wiped - keep ALL server rules here, never edit on the server.
+# Do NOT use cPanel's "Force HTTPS Redirect" toggle anymore; the
+# HTTPS rule below is the single source of truth.
+# ============================================================
+
+RewriteEngine On
+
+# --- 1) Force HTTPS and drop www (one 301, no redirect chains) ---
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://gallagherfinancialservices.com%{REQUEST_URI} [R=301,L]
+
+# --- 2) Legacy WordPress URL redirects (old indexed pages -> new) ---
+#       Old slugs that Google still has indexed. The /?$ handles the
+#       WordPress trailing slash too, so these are single 301s.
+RewriteRule ^what-we-offer/?$        /services [R=301,L,NC]
+RewriteRule ^(our-story|about|about-us)/?$  / [R=301,L,NC]
+RewriteRule ^(the-team|our-team|team-page)/?$  /team [R=301,L,NC]
+RewriteRule ^(contact-us|contactus)/?$  /contact [R=301,L,NC]
+
+# --- 3) Strip trailing slash on remaining non-directory URLs (301) ---
+#       (Old WP /page/ -> /page; without this, relative asset paths
+#       resolve under /page/ and the page renders blank.)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# --- 4) Clean URLs ---
+# 4a) /index, /index.html -> /   and   /page.html -> /page  (visible 301)
+RewriteCond %{THE_REQUEST} \s/+index(\.html)?[\s?] [NC]
+RewriteRule ^ / [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+([^.\s]+)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+# 4b) Internally serve page.html when /page is requested (no visible change)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# --- 5) Security response headers ---
+<IfModule mod_headers.c>
+  # HSTS: browsers remember to ONLY use HTTPS for 1 year (blocks SSL-strip
+  # attacks on return visits). No includeSubDomains - mail/autodiscover
+  # subdomains are third-party services we should not make promises for.
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# --- 6) Block direct access to dotfiles (.htaccess, deploy state, etc.) ---
+#       ACME/AutoSSL challenge files are NOT dotfiles, so renewal is fine.
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+# --- 7) Custom 404 page ---
+ErrorDocument 404 /404.html
+
+# --- 8) Default document ---
+DirectoryIndex index.html

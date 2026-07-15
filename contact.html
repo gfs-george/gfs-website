@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Contact Us: Gallagher Financial Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6VNFFKK0CK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6VNFFKK0CK');
+  </script>
+  <meta name="description" content="Contact Gallagher Financial Services in North St. Paul, MN. Call 651.774.8759 or visit us at 2586 7th Ave. E, Suite 304. No-obligation conversations, Monday through Friday." />
+  <meta property="og:title" content="Contact: Gallagher Financial Services" />
+  <meta property="og:description" content="Call 651.774.8759 or visit us in North St. Paul. Let's talk." />
+  <meta property="og:image" content="https://gallagherfinancialservices.com/assets/logos/gfs-logo-horizontal.jpg" />
+  <meta property="og:url" content="https://gallagherfinancialservices.com/contact" />
+  <link rel="canonical" href="https://gallagherfinancialservices.com/contact" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="icon" type="image/png" href="assets/logos/favicon-chess.png" />
+  <link rel="apple-touch-icon" href="assets/logos/favicon-chess.png" />
+  <link rel="stylesheet" href="colors_and_type.css?v=5" />
+  <link rel="stylesheet" href="refresh.css?v=15" />
+  <link rel="stylesheet" href="pages.css?v=9" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <style>:root { --nav-logo-height: 120px; }</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" src="refresh.jsx"></script>
+  <script type="text/babel">
+    function ContactPage() {
+      return (
+        <React.Fragment>
+          <UtilityBar />
+          <Nav />
+          <section className="page-hero">
+            <div className="container">
+              <div className="label">Get In Touch</div>
+              <h1 className="page-title">Let's <span className="accent">talk.</span></h1>
+            </div>
+          </section>
+          <section className="contact-section">
+            <div className="container">
+              <div className="contact-grid">
+                <div className="contact-info-block">
+                  <div className="contact-group">
+                    <div className="contact-label">Office</div>
+                    <div className="contact-value">
+                      2586 7th Ave. E, Suite 304<br/>
+                      North St. Paul, MN 55109
+                    </div>
+                  </div>
+                  <div className="contact-group">
+                    <div className="contact-label">Phone</div>
+                    <div className="contact-value"><a href="tel:+16517748759">651.774.8759</a></div>
+                  </div>
+                  <div className="contact-group">
+                    <div className="contact-label">Fax</div>
+                    <div className="contact-value">651.776.3218</div>
+                  </div>
+                  <div className="contact-group">
+                    <div className="contact-label">Hours</div>
+                    <div className="contact-value">Mon–Fri · 8:30a–5:00p CT</div>
+                  </div>
+                  <div className="parking-card">
+                    <h3>Parking & Directions</h3>
+                    <p>Our office is located in Suite 304 at 2586 East 7th Avenue in North St. Paul.</p>
+                    <div className="parking-options">
+                      <div className="parking-option">
+                        <strong>Main Entrance:</strong> Park in the main lot off Charles Street. A few spots are reserved for GFS clients; otherwise general parking is open. Elevator and stair access through the main entrance.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="contact-parking">
+                  <div className="building-map">
+                    <img src="assets/GFS images/GFS building map.jpg" alt="GFS office building map" loading="lazy" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <Footer />
+          <MobileTabBar />
+        </React.Fragment>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<ContactPage />);
+  </script>
+</body>
+</html>

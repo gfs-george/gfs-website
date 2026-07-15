@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>What We Offer: Gallagher Financial Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6VNFFKK0CK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6VNFFKK0CK');
+  </script>
+  <meta name="description" content="Financial planning, taxation, insurance, retirement, estate, charitable giving, and business services, integrated under one roof at Gallagher Financial Services." />
+  <meta property="og:title" content="What We Offer: Gallagher Financial Services" />
+  <meta property="og:description" content="Wealth, tax, and insurance, planned together by the same team, year after year." />
+  <meta property="og:image" content="https://gallagherfinancialservices.com/assets/logos/gfs-logo-horizontal.jpg" />
+  <meta property="og:url" content="https://gallagherfinancialservices.com/services" />
+  <link rel="canonical" href="https://gallagherfinancialservices.com/services" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="assets/logos/favicon-chess.png" />
+  <link rel="apple-touch-icon" href="assets/logos/favicon-chess.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="stylesheet" href="colors_and_type.css?v=5" />
+  <link rel="stylesheet" href="refresh.css?v=15" />
+  <link rel="stylesheet" href="pages.css?v=9" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <style>:root { --nav-logo-height: 120px; }</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" src="refresh.jsx"></script>
+  <script type="text/babel">
+    const SERVICE_DETAILS = [
+      { num: '01', title: 'Financial Planning',
+        desc: "A comprehensive process for your full financial life, cash flow, investments, retirement, education, taxes, insurance, and estate, all integrated.",
+        items: ['Goal-setting and prioritization', 'Investment strategy and portfolio management', 'Cash flow and budget analysis', 'Education funding (529 plans, etc.)', 'Risk assessment and insurance review', 'Annual reviews and plan adjustments'] },
+      { num: '02', title: 'Taxation',
+        desc: "Tax planning that integrates with your full financial plan, not just an April scramble.",
+        items: ['Individual tax preparation', 'Small-business and self-employed returns', 'Year-end tax projection meetings', 'Charitable giving strategy', 'Quarterly estimated taxes', 'Multi-state and complex situations'] },
+      { num: '03', title: 'Insurance',
+        desc: "Independent guidance across multiple carriers.",
+        items: ['Life insurance', 'Long-term care insurance', 'Health and Medicare supplements', 'Umbrella liability coverage', 'Annuities and retirement income products', 'Policy reviews of existing coverage'] },
+      { num: '04', title: 'Retirement',
+        desc: "Tax efficient withdrawals, Social Security timing, and healthcare costs, all coordinated for the distribution phase.",
+        items: ['Retirement income planning', 'Social Security claiming strategy', '401(k), IRA, and Roth IRA management', 'Roth conversion analysis', 'Required Minimum Distribution (RMD) planning', 'Healthcare cost and Medicare coordination'] },
+      { num: '05', title: 'Estate',
+        desc: "Estate planning that aligns your beneficiaries, trusts, and wealth transfer strategy with the rest of your financial plan.",
+        items: ['Beneficiary review across all accounts', 'Trust funding strategy', 'Wealth transfer and gifting plans', 'Estate tax minimization', 'Legacy and generational planning', 'Inherited IRA and account transfer planning'] }
+    ];
+
+    const serviceSlug = (title) => title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+    function ServicesC() {
+      const initialNum = (() => {
+        const hash = window.location.hash.replace('#', '');
+        const match = SERVICE_DETAILS.find(x => serviceSlug(x.title) === hash);
+        return match ? match.num : '01';
+      })();
+      const [active, setActive] = React.useState(initialNum);
+
+      React.useEffect(() => {
+        const onHashChange = () => {
+          const hash = window.location.hash.replace('#', '');
+          const match = SERVICE_DETAILS.find(x => serviceSlug(x.title) === hash);
+          if (match) setActive(match.num);
+        };
+        window.addEventListener('hashchange', onHashChange);
+        return () => window.removeEventListener('hashchange', onHashChange);
+      }, []);
+
+      const handleTab = (item) => {
+        setActive(item.num);
+        const slug = serviceSlug(item.title);
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, '', '#' + slug);
+        } else {
+          window.location.hash = slug;
+        }
+      };
+
+      const s = SERVICE_DETAILS.find(x => x.num === active) || SERVICE_DETAILS[0];
+
+      return (
+        <React.Fragment>
+          <section className="page-hero services-hero">
+            <div className="container">
+              <div className="label">What We Offer</div>
+              <h1 className="page-title">Wealth, tax, and insurance, <span className="accent">together.</span></h1>
+            </div>
+          </section>
+
+          <section className="c-section">
+            <div className="c-tabs-wrap">
+              <div className="container">
+                <div className="c-tabs" role="tablist">
+                  {SERVICE_DETAILS.map(it => (
+                    <button
+                      key={it.num}
+                      type="button"
+                      role="tab"
+                      aria-selected={active === it.num}
+                      className={'c-tab ' + (active === it.num ? 'active' : '')}
+                      onClick={() => handleTab(it)}
+                    >
+                      <div className="c-tab-num">{it.num}</div>
+                      <div className="c-tab-name">
+                        {it.num === '01' ? (
+                          <React.Fragment>
+                            <span className="c-tab-name-full">{it.title}</span>
+                            <span className="c-tab-name-short">Planning</span>
+                          </React.Fragment>
+                        ) : it.title}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="container">
+              <div className="c-panel">
+                <div>
+                  <div className="c-panel-eyebrow">Service {s.num} of 05</div>
+                  <h2 className="c-panel-title">{s.title}</h2>
+                  <p className="c-panel-desc">{s.desc}</p>
+                  <a className="c-panel-cta" href="contact.html">Talk to us about this →</a>
+                </div>
+                <div className="c-panel-right">
+                  {s.items.map(it => (
+                    <div className="c-card" key={it}>
+                      <div className="c-card-tick" aria-hidden="true">✓</div>
+                      <div>{it}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        </React.Fragment>
+      );
+    }
+
+    function ServicesPage() {
+      return (
+        <React.Fragment>
+          <UtilityBar />
+          <Nav />
+          <ServicesC />
+          <Visit />
+          <Footer />
+          <MobileTabBar />
+        </React.Fragment>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<ServicesPage />);
+  </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>The Team: Gallagher Financial Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6VNFFKK0CK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6VNFFKK0CK');
+  </script>
+  <meta name="description" content="Meet the Gallagher Financial Services team, a small, dedicated group of advisors, accountants, and insurance specialists serving clients in Minnesota since 1984." />
+  <meta property="og:title" content="The Team: Gallagher Financial Services" />
+  <meta property="og:description" content="The people behind your plan." />
+  <meta property="og:image" content="https://gallagherfinancialservices.com/assets/logos/gfs-logo-horizontal.jpg" />
+  <meta property="og:url" content="https://gallagherfinancialservices.com/team" />
+  <link rel="canonical" href="https://gallagherfinancialservices.com/team" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="icon" type="image/png" href="assets/logos/favicon-chess.png" />
+  <link rel="apple-touch-icon" href="assets/logos/favicon-chess.png" />
+  <link rel="stylesheet" href="colors_and_type.css?v=5" />
+  <link rel="stylesheet" href="refresh.css?v=15" />
+  <link rel="stylesheet" href="pages.css?v=9" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <style>:root { --nav-logo-height: 120px; }</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" src="refresh.jsx"></script>
+  <script type="text/babel">
+    /* Email obfuscation: no '@' character lives in this file's source. The
+       host and user halves are stored separately and joined at render time
+       using String.fromCharCode(64). Static scrapers that grep HTML/JS for
+       <text>@<text> patterns will not find any team emails. */
+    const EMAIL_HOST = ['gallagherfinancialservices', 'com'].join('.');
+    const buildEmail = (user) => user + String.fromCharCode(64) + EMAIL_HOST;
+
+    function TeamEmail({ user }) {
+      const handleClick = (e) => {
+        e.preventDefault();
+        window.location.href = 'mailto:' + buildEmail(user);
+      };
+      const display = buildEmail(user);
+      return (
+        <a className="team-email" href="#" onClick={handleClick} rel="nofollow">
+          {display}
+        </a>
+      );
+    }
+
+    const TEAM = [
+      {
+        name: 'Mark R. Gallagher',
+        title: 'Certified Financial Planner®',
+        role: 'Founder & Lead Advisor',
+        emailUser: 'mark',
+        photo: 'assets/team photos/mark_pfp-1.png',
+        bio: "Mark R Gallagher CFP® started Gallagher Financial Services in 1984 when he got licensed and decided to go out on his own. Since that time Mark has acquired many securities licenses including his series 6, series 7, series 26 and series 63. Mark is a registered CFP® Professional with the Certified Financial Planner Board and also holds his Minnesota Health and Life Insurance License. On top of that Mark also specializes in income tax preparation for individuals and small businesses. With over 40 years of experience, Mark continues to consult with individuals in Financial Planning, health and life Insurance, and income tax strategies. Mark has been happily married to his wife Nancy for over 25 years and together they have three children. If you have any questions about your finances that you are unsure of and would like someone to talk to, you are more than welcome to call Mark at the office or E-mail Mark at any time."
+      },
+      {
+        name: 'Jeff Youngquist',
+        title: 'Staff Accountant',
+        role: 'Tax & Accounting',
+        emailUser: 'jeff',
+        photo: 'assets/team photos/jeff.png',
+        bio: "Jeff has been with Gallagher Financial Services for over 10 years as a tax specialist and our Staff Accountant. He is relied upon for in-person and behind-the-scenes tax and accounting matters. Jeff is QuickBooks Pro certified and has a finance degree from Mankato State University. Among the variety of hats he wears, Jeff also assists with administrative tasks, technology, and 401k Plan administration. His past experiences include extensive small business accounting, 401K compliance, warehouse, and retail management. He and his wife Kathy have been happily married for over 35 years. In his spare time, Jeff enjoys hunting and fishing, outdoor photography, and spending time with his family. During the summer months, Jeff and Kathy frequent their seasonal campsite in Northern Minnesota!"
+      },
+      {
+        name: 'Alex Vanden Boogaard',
+        title: 'Registered Rep',
+        role: 'Financial Planning Support',
+        emailUser: 'alex',
+        photo: 'assets/team photos/alex-pfp.png'
+      },
+      {
+        name: 'Daniel Niemeyer',
+        title: 'Registered Rep and Insurance Agent',
+        role: 'Insurance',
+        emailUser: 'daniel',
+        photo: 'assets/team photos/Dan-pfp.png'
+      },
+      {
+        name: 'Logan Bracken',
+        title: 'Independent Insurance Agent',
+        role: 'Insurance',
+        emailUser: 'logan',
+        photo: 'assets/team photos/Logan-pfp.png'
+      },
+      {
+        name: 'George W. Gallagher',
+        title: 'Technical Administrator',
+        role: 'IT Operations',
+        emailUser: 'george',
+        photo: 'assets/team photos/George-pfp.png',
+        photoHover: 'assets/team photos/old-george-pfp.png'
+      },
+      {
+        name: 'Rhonda Juneski',
+        title: 'Administrative Assistant',
+        role: 'Reception',
+        emailUser: 'rhonda',
+        photo: 'assets/team photos/rhonda-pfp.png'
+      }
+    ];
+
+    function TeamPage() {
+      return (
+        <React.Fragment>
+          <UtilityBar />
+          <Nav />
+          <section className="page-hero">
+            <div className="container">
+              <div className="label">Our Team</div>
+              <h1 className="page-title">The people behind <span className="accent">your plan.</span></h1>
+            </div>
+          </section>
+          <section className="team-section">
+            <div className="container">
+              <div className="team-grid">
+                {TEAM.map(m => (
+                  <div className="team-card" key={m.name}>
+                    <div className="team-card-photo">
+                      <span className="team-photo-initials" aria-hidden="true">
+                        {m.name.split(' ').map(s => s[0]).slice(0, 2).join('')}
+                      </span>
+                      <img src={m.photo} alt={m.name} className="team-photo-main" loading="lazy"
+                           onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                      {m.photoHover && <img src={m.photoHover} alt={m.name} className="team-photo-hover" loading="lazy" />}
+                    </div>
+                    <div className="team-card-body">
+                      <h3>{m.name}</h3>
+                      <div className="team-title">{m.title}</div>
+                      <div className="team-role">{m.role}</div>
+                      {m.bio && (
+                        <details className="team-bio">
+                          <summary>Read Bio</summary>
+                          <p>{m.bio}</p>
+                        </details>
+                      )}
+                      {m.emailUser && <TeamEmail user={m.emailUser} />}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+          <Visit />
+          <Footer />
+          <MobileTabBar />
+        </React.Fragment>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<TeamPage />);
+  </script>
+</body>
+</html>
