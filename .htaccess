@@ -59,7 +59,10 @@ RewriteRule ^(.+?)/?$ $1.html [L]
 </FilesMatch>
 
 # --- 7) Custom 404 page ---
-ErrorDocument 404 /404.html
+#     Must point at the CLEAN path (/404, not /404.html): the clean-URL rule
+#     above 301s any *.html request, which breaks the ErrorDocument handoff and
+#     makes Apache fall back to its generic "File Not Found" page.
+ErrorDocument 404 /404
 
 # --- 8) Default document ---
 DirectoryIndex index.html
