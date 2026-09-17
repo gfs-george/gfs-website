@@ -471,6 +471,10 @@ img { display: block; max-width: 100%; }
 .disc-finra-sipc a { color: var(--gfs-charcoal); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; transition: color var(--dur-fast) var(--ease-standard); }
 .disc-finra-sipc a:hover { color: var(--gfs-green-700); }
 .disclosure p { margin: 0 0 8px; }
+/* Osaic Wealth entity name: bolded + brand green for supervision.
+   Uses green-700 (not the brighter 500) so the small legal text stays
+   legible on the light footer, matching the disclosure link color. */
+.osaic-name { font-weight: 700; color: var(--gfs-green-700); }
 .disclosure a { color: var(--gfs-green-700); }
 .disclosure a:hover { color: var(--gfs-green-900); }
 .copy {
