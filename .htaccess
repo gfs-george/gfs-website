@@ -30,6 +30,11 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)/$ /$1 [R=301,L]
 
 # --- 4) Clean URLs ---
+# 4z) Never rewrite the error document itself. ErrorDocument does an
+#     internal subrequest, and any rewrite of it makes Apache give up and
+#     fall back to the host's generic "File Not Found" page.
+RewriteRule ^404\.html$ - [L]
+
 # 4a) /index, /index.html -> /   and   /page.html -> /page  (visible 301)
 RewriteCond %{THE_REQUEST} \s/+index(\.html)?[\s?] [NC]
 RewriteRule ^ / [R=301,L]
@@ -49,6 +54,9 @@ RewriteRule ^(.+?)/?$ $1.html [L]
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # TEMP DIAGNOSTIC (remove once the 404 is confirmed): lets us verify
+  # from outside whether this .htaccess is actually being deployed.
+  Header always set X-GFS-Conf "v17"
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 </IfModule>
 
@@ -59,10 +67,11 @@ RewriteRule ^(.+?)/?$ $1.html [L]
 </FilesMatch>
 
 # --- 7) Custom 404 page ---
-#     Must point at the CLEAN path (/404, not /404.html): the clean-URL rule
-#     above 301s any *.html request, which breaks the ErrorDocument handoff and
-#     makes Apache fall back to its generic "File Not Found" page.
-ErrorDocument 404 /404
+#     Points at the real filename. Rule 4z above exempts it from rewriting,
+#     which is what the clean-URL rules were doing to the internal
+#     ErrorDocument subrequest (Apache then fell back to the host's
+#     generic "File Not Found" page).
+ErrorDocument 404 /404.html
 
 # --- 8) Default document ---
 DirectoryIndex index.html
