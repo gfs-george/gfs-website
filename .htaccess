@@ -41,6 +41,12 @@ RewriteRule ^ / [R=301,L]
 RewriteCond %{THE_REQUEST} \s/+([^.\s]+)\.html[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L]
 # 4b) Internally serve page.html when /page is requested (no visible change)
+#     The first condition is a loop guard, do not remove. Apache content
+#     negotiation maps /team to team.html and treats a trailing /bogus as
+#     path info, so without it this rule re-appends .html forever and any
+#     URL under an existing page name (/team/bogus) returns a 500 instead
+#     of a 404. Once the URI already ends in .html we stop.
+RewriteCond %{REQUEST_URI} !\.html$
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.+?)/?$ $1.html [L]
@@ -54,9 +60,6 @@ RewriteRule ^(.+?)/?$ $1.html [L]
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
-  # TEMP DIAGNOSTIC (remove once the 404 is confirmed): lets us verify
-  # from outside whether this .htaccess is actually being deployed.
-  Header always set X-GFS-Conf "v18"
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 </IfModule>
 
