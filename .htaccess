@@ -56,7 +56,7 @@ RewriteRule ^(.+?)/?$ $1.html [L]
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   # TEMP DIAGNOSTIC (remove once the 404 is confirmed): lets us verify
   # from outside whether this .htaccess is actually being deployed.
-  Header always set X-GFS-Conf "v17"
+  Header always set X-GFS-Conf "v18"
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 </IfModule>
 
